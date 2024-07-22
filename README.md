@@ -87,17 +87,16 @@ PPO+gymnasium
 
 1. critic网络
 
-$$
-%\text{val\_est} = critic(state)
-$$
 <p align="center">
   <img src="images/formula1.png" width="300">
 </p>
 
 2. actor网络
+
 无人机的动作空间被分为飞行动作和连接动作两种动作类型，且在输出最终动作选择前需要经过action_mask的处理，以去掉非法动作。
 
 a) 飞行动作的计算方式
+
 <p align="center">
   <img src="images/formula2.png" width="300">
 </p>
@@ -117,6 +116,7 @@ $$
 $$
 
 b) 连接动作的计算方式
+
 <p align="center">
   <img src="images/formula4.png" width="300">
 </p>
@@ -142,17 +142,8 @@ c) 损失函数
   <img src="images/formula6.png" width="300">
 </p>
 
-$$
-%\max_{\theta} \hat{\mathbb{E}}_{s, a\sim \pi_{\theta_{old}}} \left[ \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}\hat{A}_t \right]
-$$
-
 动作分组以后的PPO损失函数变为：
 
 <p align="center">
   <img src="images/formula7.png" width="300">
 </p>
-
-$$
-%\max_{\theta} \sum_{i=0}^{N_a-1}\hat{\mathbb{E}}_{s, a\sim \pi_{\theta_{old}}} \left[ \frac{\pi_\theta(a^{(i)}_t|s_t)}{\pi_{\theta_{old}}(a_t^{(i)}|s_t)}\hat{A}_t \right]
-$$
-
