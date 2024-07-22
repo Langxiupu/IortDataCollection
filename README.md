@@ -96,19 +96,19 @@ $$
 a) 飞行动作的计算方式
 
 $$
-\text{fly_logit}=fly\_mlp(common\_mlp(state))
+fly-logit=fly\_mlp(common\_mlp(state))
 $$
 
 经过mask处理后经softmax后最终输出飞行动作向量
 
 $$
-fly\_vec=softmax(mask(fly\_logit))
+fly-vec=softmax(mask(fly-logit))
 $$
 
 b) 连接动作的计算方式
 
 $$
-assoc\_logit = assoc\_mlp(common\_mlp(state))
+assoc-logit = assoc\_mlp(common\_mlp(state))
 $$
 
 经过mask处理后经softmax最终输出连接动作向量：
@@ -121,7 +121,7 @@ c) 损失函数
 原本的PPO的损失函数：
 
 $$
-\max_{\theta} \hat{\mathbb{E}}_{s, a\sim \pi_{\theta_{old}}} \left[ \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}\hat{A}_t \right]
+\max_{\theta} \hat{\mathbb{E}}_{s, a\sim \pi_{\theta_{old}}} [A_t]
 $$
 
 动作分组以后的PPO损失函数变为：
