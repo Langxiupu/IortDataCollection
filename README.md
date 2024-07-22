@@ -85,8 +85,9 @@ PPO+gymnasium
 
 - **神经网络结构**
 1. critic网络
+
 $$
-\text{val\_est} = critic(state)
+\text{val_est} = critic(state)
 $$
 
 1. actor网络
@@ -95,7 +96,7 @@ $$
 a) 飞行动作的计算方式
 
 $$
-\text{fly\_logit}=fly\_mlp(common\_mlp(state))
+\text{fly_logit}=fly\_mlp(common\_mlp(state))
 $$
 
 经过mask处理后经softmax后最终输出飞行动作向量
@@ -109,6 +110,7 @@ b) 连接动作的计算方式
 $$
 assoc\_logit = assoc\_mlp(common\_mlp(state))
 $$
+
 经过mask处理后经softmax最终输出连接动作向量：
 
 $$
