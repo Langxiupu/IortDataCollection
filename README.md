@@ -87,7 +87,7 @@ PPO+gymnasium
 1. critic网络
 
 $$
-\text{val_est} = critic(state)
+`val_est` = critic(state)
 $$
 
 1. actor网络
