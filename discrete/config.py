@@ -26,13 +26,13 @@ class EnvConfig:
     N_IORTS = 10
 
     SINGLE_ASSOC_INTERVAL = (0, 1)
-    ASSOC_STATE_DIM = N_IORTS
+    ASSOC_STATE_DIM = 2**N_IORTS
 
     AREA_RANGE = 1000
     AREA_WIDTH = AREA_RANGE / 5
     POS_INTERVAL = (0, (AREA_WIDTH)**2-1)
     SINGLE_DR_INTERVAL = (0, 19)
-    SINGLE_DIST_INTERVAL = (0, AREA_WIDTH*2-1)
+    SINGLE_DIST_INTERVAL = (0, AREA_WIDTH*2)
     SINGLE_POW = (0, 1)
     SINGLE_DR_TH = (0, 1)
     ENGY = (0, 9)
@@ -43,9 +43,11 @@ class EnvConfig:
     PROP_C2 = 2250
 
 
+
 class nnConfig:
     critic_feat_list = [EnvConfig.STATE_DIM, 64, 32, 1]
+
     common_feat_list = [EnvConfig.STATE_DIM, 128, 64, 64]
     fly_fc = [64, EnvConfig.FLY_DIM]
-    assoc_fc = [64, EnvConfig.ASSOC_STATE_DIM]
+    assoc_fc = [64, 512, 1024, EnvConfig.ASSOC_STATE_DIM]
     act_feat_list = [common_feat_list, fly_fc, assoc_fc]

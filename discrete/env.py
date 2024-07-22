@@ -35,8 +35,8 @@ class UAVScheduling(gym.Env):
     
     def _generate_action_space(self):
         fly_max = EnvConfig.FLY_DIM
-        assoc_max = EnvConfig.SINGLE_ASSOC_INTERVAL[1] + 1
-        action_space = [fly_max] + [assoc_max]*EnvConfig.N_IORTS
+        assoc_max = 2 ** EnvConfig.N_IORTS
+        action_space = [fly_max] + [assoc_max]
         return MultiDiscrete(action_space)
     
     def _generate_mask(self, pos):
@@ -71,3 +71,4 @@ class UAVScheduling(gym.Env):
     
     def _pos_2to1(self, pos, width=EnvConfig.AREA_WIDTH):
         return width*pos[0] + pos[1]
+    
