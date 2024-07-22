@@ -84,6 +84,7 @@ PPO+gymnasium
 **注**：区域内iort数量默认为10个。
 
 - **神经网络结构**
+
 1. critic网络
 
 $$
@@ -93,7 +94,7 @@ $$
   <img src="images/formula1.png" width="300">
 </p>
 
-1. actor网络
+2. actor网络
 无人机的动作空间被分为飞行动作和连接动作两种动作类型，且在输出最终动作选择前需要经过action_mask的处理，以去掉非法动作。
 
 a) 飞行动作的计算方式
@@ -154,3 +155,4 @@ $$
 $$
 %\max_{\theta} \sum_{i=0}^{N_a-1}\hat{\mathbb{E}}_{s, a\sim \pi_{\theta_{old}}} \left[ \frac{\pi_\theta(a^{(i)}_t|s_t)}{\pi_{\theta_{old}}(a_t^{(i)}|s_t)}\hat{A}_t \right]
 $$
+
