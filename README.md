@@ -84,37 +84,38 @@ PPO+gymnasium
 **注**：区域内iort数量默认为10个。
 
 - **神经网络结构**
+
 1. critic网络
 
 $$
 `val_est` = critic(state)
 $$
 
-1. actor网络
+2. actor网络
 无人机的动作空间被分为飞行动作和连接动作两种动作类型，且在输出最终动作选择前需要经过action_mask的处理，以去掉非法动作。
 
 a) 飞行动作的计算方式
 
 $$
-fly-logit=fly\_mlp(common\_mlp(state))
+`fly-logit`=`fly_mlp`(`common_mlp`(state))
 $$
 
 经过mask处理后经softmax后最终输出飞行动作向量
 
 $$
-fly-vec=softmax(mask(fly-logit))
+`fly_vec`=softmax(mask(`fly_logit`))
 $$
 
 b) 连接动作的计算方式
 
 $$
-assoc-logit = assoc\_mlp(common\_mlp(state))
+`assoc_logit` = `assoc_mlp`(`common_mlp`(state))
 $$
 
 经过mask处理后经softmax最终输出连接动作向量：
 
 $$
-assoc\_vec = softmax(max(assoc_logit))
+`assoc_vec` = softmax(max(`assoc_logit`))
 $$
 
 c) 损失函数
