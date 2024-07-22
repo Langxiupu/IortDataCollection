@@ -3,6 +3,7 @@
   - [二、代码目录](#二代码目录)
   - [三、代码进度](#三代码进度)
   - [四、代码待完成部分](#四代码待完成部分)
+  - [五、核心算法设计](#五核心算法设计)
 
 # IortDataCollection
 ## 一、技术栈
@@ -38,7 +39,7 @@ PPO+gymnasium
 1. 训练过程：包含经验采集与模型更新。
 2. 无人机飞行与数据采集的环境实现。
 
-五、核心算法设计
+## 五、核心算法设计
 - **动作空间**
 分为两种类型的动作：飞行动作和连接动作。
 
@@ -92,6 +93,7 @@ $$
 无人机的动作空间被分为飞行动作和连接动作两种动作类型，且在输出最终动作选择前需要经过action_mask的处理，以去掉非法动作。
 
 a) 飞行动作的计算方式
+
 $$
 \text{fly\_logit}=fly\_mlp(common\_mlp(state))
 $$
@@ -103,21 +105,25 @@ fly\_vec=softmax(mask(fly\_logit))
 $$
 
 b) 连接动作的计算方式
+
 $$
 assoc\_logit = assoc\_mlp(common\_mlp(state))
 $$
 经过mask处理后经softmax最终输出连接动作向量：
+
 $$
 assoc\_vec = softmax(max(assoc_logit))
 $$
 
 c) 损失函数
 原本的PPO的损失函数：
+
 $$
 \max_{\theta} \hat{\mathbb{E}}_{s, a\sim \pi_{\theta_{old}}} \left[ \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}\hat{A}_t \right]
 $$
 
 动作分组以后的PPO损失函数变为：
+
 $$
 \max_{\theta} \sum_{i=0}^{N_a-1}\hat{\mathbb{E}}_{s, a\sim \pi_{\theta_{old}}} \left[ \frac{\pi_\theta(a^{(i)}_t|s_t)}{\pi_{\theta_{old}}(a_t^{(i)}|s_t)}\hat{A}_t \right]
 $$
